@@ -1,0 +1,14 @@
+# Oculto las carpetas del proyecto
+Options All -Indexes
+
+
+
+# Habilitamos la funcionalidad de url amigable
+RewriteEngine On
+RewriteRule ^admin/ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([-a-zA-Z0-9/]+)$ index.php?ruta=$1
+
+
+# Developed by MiguelAngel
