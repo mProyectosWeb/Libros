@@ -1,2 +1,2 @@
 <?php
-    const SERVER_URL = 'http://localhost/libros2/admin/';
+    const SERVER_URL = 'http://localhost/libros/admin/';

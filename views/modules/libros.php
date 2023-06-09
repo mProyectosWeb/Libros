@@ -5,6 +5,7 @@
     foreach($listaLibros as $libro){
 ?>
     <div class="col-md-3">
+        <br>
         <div class="card">
             <div class="aspect-ratio">
                 <img class="img-fluid" src="admin/views/img/<?php echo $libro['imagen']; ?>">
@@ -14,5 +15,6 @@
                 <a name="" id="" class="btn btn-primary" href="https://goalkicker.com" role="button">Ver más</a>
             </div>
         </div>
+        <br>
     </div>
     <?php } ?>

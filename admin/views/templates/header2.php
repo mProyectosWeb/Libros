@@ -1,5 +1,5 @@
 <?php
-    $url = "http://localhost/libros2/";
+    $url = "http://localhost/libros/";
     session_start();
     if(!isset($_SESSION['usuario'])){
         header("Location:modules/inicio.php");

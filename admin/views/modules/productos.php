@@ -45,7 +45,7 @@ switch ($accion) {
             $nombreArchivo = ($image != "") ? $fecha->getTimestamp() . "_" . $_FILES["imagen"]["name"] : "imagen.jpg";
             $tmpImagen = $_FILES["imagen"]["tmp_name"];
 
-            move_uploaded_file($tmpImagen, "../../img/" . $nombreArchivo);
+            move_uploaded_file($tmpImagen, "../admin/views/img/" . $nombreArchivo);
 
             $sentenciaSQL = $conexion->prepare("SELECT imagen FROM libros WHERE id=:id");
             $sentenciaSQL->bindParam(':id', $id);
@@ -54,7 +54,7 @@ switch ($accion) {
 
             if (isset($libro["imagen"]) && ($libro["imagen"] != "imagen.jpg")) {
                 if (file_exists("../../img/" . $libro["imagen"])) {
-                    unlink("../../img/" . $libro["imagen"]);
+                    unlink("../admin/views/img/" . $libro["imagen"]);
                 }
             }
 
@@ -63,7 +63,7 @@ switch ($accion) {
             $sentenciaSQL->bindParam(':id', $id);
             $sentenciaSQL->execute();
         }
-        header("Location:productos.php");
+        header("Location:".SERVER_URL."productos");
         break;
     case "Cancelar":
 
@@ -71,7 +71,7 @@ switch ($accion) {
         $nombre = "";
         $image = "";
         $accion = "Agregar";
-
+        header("Location:".SERVER_URL."productos");
         break;
     case "Seleccionar":
         //echo "Se presiono el boton seleccionar";
@@ -92,8 +92,8 @@ switch ($accion) {
         $libro = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
 
         if (isset($libro["imagen"]) && ($libro["imagen"] != "imagen.jpg")) {
-            if (file_exists("../../img/" . $libro["imagen"])) {
-                unlink("../../img/" . $libro["imagen"]);
+            if (file_exists("../admin/views/img/" . $libro["imagen"])) {
+                unlink("../admin/views/img/" . $libro["imagen"]);
             }
         }
 
@@ -102,7 +102,7 @@ switch ($accion) {
         $sentenciaSQL = $conexion->prepare("DELETE FROM libros WHERE id=:id");
         $sentenciaSQL->bindParam(':id', $id);
         $sentenciaSQL->execute();
-        header("Location:productos.php");
+        header("Location:".SERVER_URL."productos");
         break;
 }
 
